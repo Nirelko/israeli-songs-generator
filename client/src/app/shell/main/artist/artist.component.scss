@@ -1,0 +1,13 @@
+mat-card {
+  cursor: pointer;
+  transition: transform 0.5s;
+
+  img {
+    height: 300px;
+    width: 300px;
+  }
+
+  &:hover {
+    transform: scale(1.05 );
+  }
+}
