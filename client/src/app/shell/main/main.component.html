@@ -1,4 +1,4 @@
 <preview></preview>
 <div fxLayout="row" fxLayoutWrap fxLayoutAlign="center start" class="artists-container">
-  <artist [artist]="artist" *ngFor="let artist of artists"></artist>
+  <artist [artist]="artist" *ngFor="let artist of artists" (click)="selectArtist(artist)"></artist>
 </div>
