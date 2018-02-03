@@ -1,4 +1,5 @@
-import time;
+import time
+from ml.song_generator import SongGenerator
 
 class ArtistsController:
     def __init__(self):
@@ -18,5 +19,4 @@ class ArtistsController:
         return self.availableArtists
 
     def generate_song(self, artist_name):
-        time.sleep(3)
-        return artist_name
+        return SongGenerator(artist_name).generate()

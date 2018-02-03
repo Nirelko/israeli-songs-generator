@@ -15,9 +15,12 @@ export class MainComponent {
 
   onArtistSelect (artist) {
     this.showLoading = true;
+    this.generatedSong = null;
 
     return this.artistService.generateSong(artist)
       .then(words => {
+        debugger;
+        words = words.split('\n').join('<br />');
         this.showLoading = false;
         this.generatedSong = {
           artist,

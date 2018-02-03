@@ -6,6 +6,9 @@
     </h1>
   </div>
   <div class="words-container">
-    <span>{{ generatedSong.words }}</span>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <span [innerHTML]="generatedSong.words">
+      </span>
+    </div>
   </div>
 </div>
