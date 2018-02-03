@@ -20,7 +20,7 @@ export class MainComponent {
     return this.artistService.generateSong(artist)
       .then(words => {
         debugger;
-        words = words.split('\n').join('<br />');
+        words = words.split('\n').join('<br />').split('¶').join('<br /><br />');
         this.showLoading = false;
         this.generatedSong = {
           artist,

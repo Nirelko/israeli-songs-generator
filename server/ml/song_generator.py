@@ -7,7 +7,7 @@ import string
 import random
 import io
 
-maxlen = 17
+maxlen = 30
 diversity = 0.5
 sentences = []
 next_chars = []
