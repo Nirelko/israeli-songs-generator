@@ -1,0 +1,4 @@
+<div class="container" fxLayout="column" *ngIf="showLoading || generatedSong">
+  <wave-loading *ngIf="showLoading" fxFlex fxLayout="column" fxLayoutAlign="center center"></wave-loading>
+  <song [generatedSong]="generatedSong" *ngIf="generatedSong"></song>
+</div>

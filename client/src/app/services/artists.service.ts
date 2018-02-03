@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
-import Artist from '../shell/main/artist/artist';
+import Artist from '../shell/main/artist-selector/artist/artist';
 
 @Injectable()
 export class ArtistsService {

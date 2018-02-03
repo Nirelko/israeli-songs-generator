@@ -1,32 +1,30 @@
-import {Component, OnInit} from '@angular/core';
-import Artist from './artist/artist';
-import { ArtistsService } from '../../services/artists.service';
+import {Component, EventEmitter} from '@angular/core';
+import {ArtistsService} from '../../services/artists.service';
 
 @Component({
   selector: 'main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
-  artists: [Artist];
+export class MainComponent {
+  showLoading: boolean;
+  generatedSong: any;
 
   constructor(private artistService: ArtistsService) {
   }
 
-  ngOnInit() {
-    this.artistService.get()
-      .then((artists: [Artist]) => this.artists = artists);
-  }
+  onArtistSelect (artist) {
+    this.showLoading = true;
 
-  selectArtist(artist) {
     return this.artistService.generateSong(artist)
-      .then(result => {
-        debugger;
-      })
+      .then(words => {
+        this.showLoading = false;
+        this.generatedSong = {
+          artist,
+          words
+        }
+      });
   }
 }
 
-export default {
-  path: '',
-  component: MainComponent
-};
+export default  MainComponent;

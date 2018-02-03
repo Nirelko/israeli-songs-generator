@@ -1,4 +1,2 @@
-<preview></preview>
-<div fxLayout="row" fxLayoutWrap fxLayoutAlign="center start" class="artists-container">
-  <artist [artist]="artist" *ngFor="let artist of artists" (click)="selectArtist(artist)"></artist>
-</div>
+<artist-selector (onSelect)="onArtistSelect($event)"></artist-selector>
+<generated-song [showLoading]="showLoading" [generatedSong]="generatedSong"></generated-song>

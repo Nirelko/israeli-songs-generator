@@ -1,0 +1,71 @@
+$pipeWidth: 55px;
+$pipeHeight: 50px;
+$pipeMaxHeight: $pipeHeight * 5;
+$spaceBetweenSpan: 8px;
+$pipeAnimationLength: 1.75s;
+$pipeAnimationDelay: 0.2s;
+$pipeStartColor: #9b59b6;
+$pipeEndColor: #3498db;
+
+.loading-container {
+  position: relative;
+  width: ($pipeWidth + $spaceBetweenSpan) * 6 - $spaceBetweenSpan;
+  height: $pipeMaxHeight;
+
+  .pipe {
+    bottom: 0;
+    width: $pipeWidth;
+    height: $pipeHeight;
+    background: $pipeStartColor;
+    position: absolute;
+    animation: audio-wave $pipeAnimationLength infinite ease-in-out;
+  }
+
+  .pipe:nth-child(2) {
+    left: $pipeWidth + $spaceBetweenSpan;
+    animation-delay: $pipeAnimationDelay;
+  }
+
+  .pipe:nth-child(3) {
+    left: ($pipeWidth + $spaceBetweenSpan) * 2;
+    animation-delay: $pipeAnimationDelay * 2;
+  }
+
+  .pipe:nth-child(4) {
+    left: ($pipeWidth + $spaceBetweenSpan) * 3;
+    animation-delay: $pipeAnimationDelay * 3;
+  }
+
+  .pipe:nth-child(5) {
+    left: ($pipeWidth + $spaceBetweenSpan) * 4;
+    animation-delay: $pipeAnimationDelay * 4;
+  }
+
+  .pipe:nth-child(6) {
+    left: ($pipeWidth + $spaceBetweenSpan) * 5;
+    animation-delay: $pipeAnimationDelay * 5;
+  }
+
+  @keyframes audio-wave {
+    0% {
+      height: $pipeHeight;
+      transform: translateY(0px);
+      background: $pipeStartColor;
+    }
+    25% {
+      height: $pipeMaxHeight;
+      transform: translateY(($pipeMaxHeight / 2) - $pipeHeight);
+      background: $pipeEndColor;
+    }
+    50% {
+      height: $pipeHeight;
+      transform: translateY(0px);
+      background: $pipeStartColor;
+    }
+    100% {
+      height: $pipeHeight;
+      transform: translateY(0px);
+      background: $pipeStartColor;
+    }
+  }
+}

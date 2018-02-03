@@ -9,8 +9,12 @@ import 'hammerjs';
 import { ShellComponent } from './shell/shell.component';
 import { HeaderComponent } from './shell/header/header.component';
 import { MainComponent } from './shell/main/main.component';
-import { PreviewComponent } from './shell/main/preview/preview.component';
-import { ArtistComponent } from './shell/main/artist/artist.component';
+import { ArtistSelector } from './shell/main/artist-selector/artist-selector.component';
+import { GeneratedSong } from './shell/main/generated-song/generated-song.component';
+import { WaveLoading } from './shell/main/generated-song/wave-loading/wave-loading.component';
+import { Song } from './shell/main/generated-song/song/song.component';
+import { PreviewComponent } from './shell/main/artist-selector/preview/preview.component';
+import { ArtistComponent } from './shell/main/artist-selector/artist/artist.component';
 import { ArtistsService } from './services/artists.service';
 
 
@@ -19,8 +23,12 @@ import { ArtistsService } from './services/artists.service';
     ShellComponent,
     HeaderComponent,
     MainComponent,
+    ArtistSelector,
+    GeneratedSong,
+    WaveLoading,
     PreviewComponent,
-    ArtistComponent
+    ArtistComponent,
+    Song
   ],
   imports: [
     BrowserModule,
