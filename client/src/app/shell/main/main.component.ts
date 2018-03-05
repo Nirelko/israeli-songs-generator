@@ -9,6 +9,7 @@ import {ArtistsService} from '../../services/artists.service';
 export class MainComponent {
   showLoading: boolean;
   generatedSong: any;
+  selectedArtist: any;
 
   constructor(private artistService: ArtistsService) {
   }
@@ -16,6 +17,7 @@ export class MainComponent {
   onArtistSelect (artist) {
     this.showLoading = true;
     this.generatedSong = null;
+    this.selectedArtist = artist;
 
     return this.artistService.generateSong(artist)
       .then((words: string) => {
@@ -26,6 +28,10 @@ export class MainComponent {
           words
         }
       });
+  }
+
+  generateNew() {
+    this.onArtistSelect(this.selectedArtist);
   }
 }
 

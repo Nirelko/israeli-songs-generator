@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatCardModule } from '@angular/material';
+import { MatToolbarModule, MatCardModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
 import 'hammerjs';
@@ -33,6 +33,7 @@ import { ArtistsService } from './services/artists.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     MatToolbarModule,
     MatCardModule,
     FlexLayoutModule,

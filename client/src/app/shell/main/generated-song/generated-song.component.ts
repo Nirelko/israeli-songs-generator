@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'generated-song',
@@ -8,6 +8,15 @@ import {Component, Input} from '@angular/core';
 export class GeneratedSong {
   @Input() showLoading: boolean;
   @Input() generatedSong: boolean;
+  @Output() generateNew: EventEmitter<void>;
+
+  constructor() {
+    this.generateNew = new EventEmitter<void>();
+  }
+
+  onGenerateNew() {
+    this.generateNew.emit();
+  }
 }
 
 export default {

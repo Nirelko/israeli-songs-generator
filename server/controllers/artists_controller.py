@@ -4,15 +4,13 @@ from ml.song_generator import SongGenerator
 class ArtistsController:
     def __init__(self):
         self.availableArtists = [
-            {"name": 'עומר אדם', "pictureUrl": 'https://i.scdn.co/image/8f3e48796b2e6a428563a6a333f79b0f2fc383d2'},
-            {"name": 'עדן בן זקן',
-             "pictureUrl": 'https://scontent.fsdv3-1.fna.fbcdn.net/v/t31.0-8/14258229_1886242761599575_5759113442581614264_o.jpg?oh=60bd1d820250fc04c14fc1c63a0cbd1a&oe=5AD83887'},
-            {"name": 'אייל גולן',
-             "pictureUrl": 'http://ashdodnet.com/dyncontent/Old/ashdodnet/dyncontent/t_post/2013/11/21/532005257708734602536.jpg'},
-            {"name": 'אביב גפן',
-             "pictureUrl": 'http://www.itb.co.uk/uploads/artists/58d28c22a8389.jpg'},
-            {"name": 'טונה',
-             "pictureUrl": 'https://www.disccenter.co.il/content/suppliers/sup_19397.png'}
+            {"name": 'מזרחית', "pictureUrl": 'http://www.radiom.co.il/LOGO2.png'},
+            {"name": 'פופ',
+             "pictureUrl": 'https://cdn.shopify.com/s/files/1/2397/1553/files/PopMusicRecords_Tees_Colour_720x.jpg?v=1506446168'},
+            {"name": 'רוק',
+             "pictureUrl": 'https://is3-ssl.mzstatic.com/image/thumb/Music3/v4/40/9a/b7/409ab7b6-ba97-6bf2-33e0-2a1166e7baf0/889211446995.jpg/268x0w.jpg'},
+            {"name": 'ישראל הישנה',
+             "pictureUrl": 'http://images.maariv.co.il/image/upload/f_auto,fl_lossy/t_ArticleControlTransformaionFaceDetect/437395'}
         ]
 
     def get_available_artist(self):
