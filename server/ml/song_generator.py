@@ -7,24 +7,24 @@ import string
 import random
 import io
 
-maxlen = 30
 diversity = 0.5
 sentences = []
 next_chars = []
 
 
 class SongGenerator:
-    def __init__(self, artist_name):
+    def __init__(self, artist_name, maxLen):
+        self.maxLen = maxLen
         self.artist_name = artist_name.lower().replace(' ', '_')
 
     def get_start_text_from_corpus(self, word_corpus):
-        spaceIndexes = [i for i, letter in enumerate(word_corpus[: len(word_corpus) - maxlen - 1]) if letter == '\n']
+        spaceIndexes = [i for i, letter in enumerate(word_corpus[: len(word_corpus) - self.maxLen - 1]) if letter == '\n']
         start_index = random.randint(0, len(spaceIndexes) - 1)
 
-        return word_corpus[spaceIndexes[start_index] + 1:spaceIndexes[start_index] + 1 + maxlen]
+        return word_corpus[spaceIndexes[start_index] + 1:spaceIndexes[start_index] + 1 + self.maxLen]
 
     def convert_text_to_one_hot(self, text, chars_corpus, char_to_indices):
-        text_one_hot_array = np.zeros((1, maxlen, len(chars_corpus)))
+        text_one_hot_array = np.zeros((1, self.maxLen, len(chars_corpus)))
         for t, char in enumerate(text):
             text_one_hot_array[0, t, char_to_indices[char]] = 1.
 
@@ -41,7 +41,7 @@ class SongGenerator:
 
     def load_model(self, char_corpus):
         self.model = Sequential()
-        self.model.add(LSTM(128, input_shape=(maxlen, len(char_corpus))))
+        self.model.add(LSTM(256, input_shape=(self.maxLen, len(char_corpus))))
         self.model.add(Dense(len(char_corpus)))
         self.model.add(Activation('softmax'))
 
@@ -69,9 +69,9 @@ class SongGenerator:
 
     def generate(self):
         word_corpus = io.open('assets/' + self.artist_name + '.txt', encoding='utf-8').read().lower().replace('line', '\n')
-        translator = str.maketrans('', '', string.punctuation)
+        translator = str.maketrans('', '', '!"#$%&()*+,-./:;<=>?@[\]^_`{|}')
         word_corpus = word_corpus.translate(translator)
-
+        
         song_start = self.get_start_text_from_corpus(word_corpus)
 
         return self.generate_rest_of_song(song_start, word_corpus)
