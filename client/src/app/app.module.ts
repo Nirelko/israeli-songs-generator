@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatToolbarModule, MatCardModule, MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {HttpClientModule} from '@angular/common/http';
+import { TypingModule } from 'ng-typing';
 import 'hammerjs';
 
 import { ShellComponent } from './shell/shell.component';
@@ -13,6 +14,7 @@ import { ArtistSelector } from './shell/main/artist-selector/artist-selector.com
 import { GeneratedSong } from './shell/main/generated-song/generated-song.component';
 import { WaveLoading } from './shell/main/generated-song/wave-loading/wave-loading.component';
 import { Song } from './shell/main/generated-song/song/song.component';
+import { Sentence } from './shell/main/generated-song/song/sentence/sentence.component';
 import { PreviewComponent } from './shell/main/artist-selector/preview/preview.component';
 import { ArtistComponent } from './shell/main/artist-selector/artist/artist.component';
 import { ArtistsService } from './services/artists.service';
@@ -28,7 +30,8 @@ import { ArtistsService } from './services/artists.service';
     WaveLoading,
     PreviewComponent,
     ArtistComponent,
-    Song
+    Song,
+    Sentence
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { ArtistsService } from './services/artists.service';
     MatToolbarModule,
     MatCardModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    TypingModule
   ],
   bootstrap: [ShellComponent],
   providers: [ArtistsService]

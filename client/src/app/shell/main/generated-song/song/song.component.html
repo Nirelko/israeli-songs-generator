@@ -7,9 +7,11 @@
   </div>
   <div>
     <div class="words-container">
-      <div fxLayout="row" fxLayoutAlign="center center">
-        <span class="words" [innerHTML]="generatedSong.words">
-        </span>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div *ngFor="let sentence of sentences; let i = index">
+         <sentence [sentence]="sentence" (onAnimationEnd)="showNext(i)" *ngIf="isShowedSentences[i]"></sentence>
+          <br />
+        </div>
       </div>
     </div>
   </div>
