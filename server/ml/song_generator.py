@@ -13,9 +13,8 @@ next_chars = []
 
 
 class SongGenerator:
-    def __init__(self, artist_name, maxLen):
-        self.maxLen = maxLen
-        self.artist_name = artist_name.lower().replace(' ', '_')
+    def __init__(self):
+        self.current_artist = None
 
     def get_start_text_from_corpus(self, word_corpus):
         spaceIndexes = [i for i, letter in enumerate(word_corpus[: len(word_corpus) - self.maxLen - 1]) if letter == '\n']
@@ -48,15 +47,19 @@ class SongGenerator:
         loadedModel = load_model('assets/' + self.artist_name + '.h5')
         self.model.set_weights(loadedModel.get_weights())
 
-    def generate_rest_of_song(self, song, word_corpus):
+    def generate_rest_of_song(self, artist_name, song, word_corpus):
         chars_corpus = sorted(list(set(word_corpus)))
         char_to_indices = dict((char, index) for index, char in enumerate(chars_corpus))
         indices_to_char = dict((index, char) for index, char in enumerate(chars_corpus))
         related_chars = song
 
-        self.load_model(chars_corpus)
+        if self.current_artist != artist_name:
+            self.load_model(chars_corpus)
+            self.current_artist = artist_name
 
-        for i in range(400):
+        i = 0
+        next_char = None
+        while i < 500 or next_char != ' ':
             related_chars_one_hot_array = self.convert_text_to_one_hot(related_chars, chars_corpus, char_to_indices)
             preds = self.model.predict(related_chars_one_hot_array, verbose=0, batch_size=1)[0]
             next_index = self.sample(preds)
@@ -64,14 +67,18 @@ class SongGenerator:
 
             song += next_char
             related_chars = related_chars[1:] + next_char
+            i += 1
 
         return song
 
-    def generate(self):
+    def generate(self, artist_name, maxLen):
+        self.maxLen = maxLen
+        self.artist_name = artist_name.lower().replace(' ', '_')
+
         word_corpus = io.open('assets/' + self.artist_name + '.txt', encoding='utf-8').read().lower().replace('line', '\n')
         translator = str.maketrans('', '', '!"#$%&()*+,-./:;<=>?@[\]^_`{|}')
         word_corpus = word_corpus.translate(translator)
         
         song_start = self.get_start_text_from_corpus(word_corpus)
 
-        return self.generate_rest_of_song(song_start, word_corpus)
+        return self.generate_rest_of_song(artist_name, song_start, word_corpus)

@@ -22,8 +22,10 @@ class ArtistsController:
             }
         ]
 
+        self.songGenerator = SongGenerator()
+
     def get_available_artist(self):
         return self.availableArtists
 
     def generate_song(self, artist_name):
-        return SongGenerator(artist_name, [artist["maxLen"] for artist in self.availableArtists if artist["name"] == artist_name][0]).generate()
+        return self.songGenerator.generate(artist_name, [artist["maxLen"] for artist in self.availableArtists if artist["name"] == artist_name][0])
